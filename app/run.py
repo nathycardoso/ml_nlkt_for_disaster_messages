@@ -48,6 +48,10 @@ def index():
     genre_counts = df.groupby('genre').count()['message']
     genre_names = list(genre_counts.index)
     
+    
+    features = df.drop(['id','message','original','genre'], axis=1)
+    
+    
     # create visuals
     # TODO: Below is an example - modify to create your own visuals
     graphs = [
@@ -68,7 +72,32 @@ def index():
                     'title': "Genre"
                 }
             }
+        },
+        
+        
+        {
+            'data': [
+                Bar(
+                    x=features.sum(axis=0).index,
+                    y=features.sum(axis=0).values
+                )
+            ],
+
+            'layout': {
+                'title': 'Count of Message by type',
+                'yaxis': {
+                    'title': "Count"
+                },
+                'xaxis': {
+                    'title': "type"
+                }
+            }
         }
+        
+        
+        
+        
+        
     ]
     
     # encode plotly graphs in JSON

@@ -29,6 +29,8 @@ from sklearn.metrics import classification_report
 
 import pickle
 
+from sklearn.model_selection import GridSearchCV
+
 def load_data(database_filepath):
     
     
@@ -86,6 +88,14 @@ def build_model():
         ('clf',MultiOutputClassifier(RandomForestClassifier()))
     ])
     
+    
+    parameters = {
+        'tokenize__ngram_range': ((1, 1), (1, 2)),
+        'clf__estimator__min_samples_split': [2, 3]
+    }
+
+    cv = GridSearchCV(pipeline, param_grid=parameters)
+    
     return pipeline
 
 
@@ -97,7 +107,11 @@ def evaluate_model(model, X_test, Y_test, category_names):
     
     """
     y_pred = model.predict(X_test)
-    print(classification_report(np.hstack(Y_test), np.hstack(y_pred), target_names=category_names))
+    y_pred[y_pred > 0.5] = 1
+    Y_test[Y_test > 0.5] = 1
+    
+    print(classification_report(Y_test,y_pred, target_names=list(category_names)))
+
 
 
 def save_model(model, model_filepath):
