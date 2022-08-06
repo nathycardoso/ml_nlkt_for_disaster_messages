@@ -1,5 +1,28 @@
 # Disaster Response Pipeline Project
 
+### Objective:
+- this is a udacity project to train skills about?
+1. How to build a ETL Pipeline
+2. How to build a machine learn pipeline with nlkt
+    - normalize data
+    - tokenize
+    - remove stop words
+    - train model
+    - put all the steps in ml pipeline
+    - evaluate results
+    - use grid search to improve model predict
+3. build end to end aplication to use our model in web app aplication with flask
+
+### Files:
+
+You will find 3 folders in this project.
+1. app 
+    - files to run the webapp aplication with flask 
+2. data
+    - csv files and process_data.py with ETL pipeline
+3. models 
+    - train_classifier.py to build your ml model
+
 ### Instructions:
 1. Run the following commands in the project's root directory to set up your database and model.
 
