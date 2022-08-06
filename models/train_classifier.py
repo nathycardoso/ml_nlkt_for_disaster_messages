@@ -30,6 +30,17 @@ from sklearn.metrics import classification_report
 import pickle
 
 def load_data(database_filepath):
+    
+    
+    """
+        call this function to load the data from database
+        you this need to pass the database filepath
+        this function will return 3 variables with:
+            - X = flat messages array to use in your model
+            - Y = the flag 1 or 0 for each label
+            - category_names = a list of label names 
+    """
+    
     engine = create_engine('sqlite:///'+database_filepath)
     df = pd.read_sql_table('messages', engine)
     X = df[['message']].values
@@ -40,6 +51,20 @@ def load_data(database_filepath):
     return X, Y, category_names
 
 def tokenize(text):
+    
+    """
+    
+        this function will ajust the text to use in ml pipeline
+            - normalize removing some caracters
+            - tokenize words with nlkt lib
+            - remove stop words
+            - lemmatizer each word
+            - stemmed each word
+            
+        and finaly return a clean array of words
+    
+    """
+    
     text_normalized = re.sub(r"[^a-zA-Z0-9]", " ", str(text).lower())
     word_tokens = word_tokenize(text_normalized)
     no_stop_words = [w for w in word_tokens if w not in stopwords.words('english')]
@@ -50,6 +75,11 @@ def tokenize(text):
 
 
 def build_model():
+    """
+        this function is to build ml pipeline with all steps to improve your model
+        they return a pipeline object to train and predict in other steps
+    
+    """
     pipeline = Pipeline([
         ('tokenize', CountVectorizer(tokenizer=tokenize)),
         ('tfid', TfidfTransformer()),
@@ -60,11 +90,22 @@ def build_model():
 
 
 def evaluate_model(model, X_test, Y_test, category_names):
+    
+    
+    """
+        this function will evaluate the model and print the f1-score for each feature
+    
+    """
     y_pred = model.predict(X_test)
     print(classification_report(np.hstack(Y_test), np.hstack(y_pred), target_names=category_names))
 
 
 def save_model(model, model_filepath):
+    
+    """
+        this function will save your model to use in web app aplication to predict new messages
+    """
+    
     # save the model to disk
     filename = model_filepath
     pickle.dump(model, open(filename, 'wb'))

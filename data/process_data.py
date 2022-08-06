@@ -8,11 +8,32 @@ from sqlalchemy import create_engine
 
 
 def load_data(messages_filepath, categories_filepath):
+    
+    """
+        this function will load data from csv file and return one dataframe with columns from 2 csv bellow:
+            messages_filepath = path to messages csv file
+            categories_filepath = path to categories csv file
+    
+    """
+    
     messages = pd.read_csv(messages_filepath)
     categories = pd.read_csv(categories_filepath)
     return pd.merge(messages,categories,how='left',on='id',copy=True)
 
 def clean_data(df):
+    
+    
+    """
+        this function will clean data from df load before
+            - transform each categories in columns
+            - drop duplicates
+            - fill na values
+            
+        and return one clean dataset 
+    
+    """
+    
+    
     # create a dataframe of the 36 individual category columns
     categories = df['categories'].str.split(';',expand=True)
     
@@ -48,6 +69,16 @@ def clean_data(df):
 
 
 def save_data(df, database_filename):
+    
+    
+    """
+        this function will save the dataframe in a sqlite database
+        here, you need to inform the name of the table
+        in this example, we will save the data in messages table with replace argument in case the table aready exists
+        
+    """
+    
+    
     engine = create_engine('sqlite:///'+database_filename)
     df.to_sql('messages', engine, index=False,if_exists='replace')  
 
