@@ -22,6 +22,22 @@ You will find 3 folders in this project.
     - csv files and process_data.py with ETL pipeline
 3. models 
     - train_classifier.py to build your ml model
+    
+### installations:
+1. To run this project you need to install/import the libs below:
+    - pandas
+    - numpy
+    - sqlalchemy
+    - re
+    - nltk
+    - sklearn.pipeline
+    - CountVectorizer
+    - TfidfTransformer
+    - sklearn.datasets > make_multilabel_classification
+    - sklearn.multioutput > MultiOutputClassifier
+    - sklearn.ensemble > RandomForestClassifier
+    - sklearn.model_selection > train_test_split
+    - sklearn.metrics > classification_report
 
 ### Instructions:
 1. Run the following commands in the project's root directory to set up your database and model.
