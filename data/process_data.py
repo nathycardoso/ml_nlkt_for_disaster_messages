@@ -65,6 +65,9 @@ def clean_data(df):
     #drop null values
     df = df.fillna(0)
     
+    #convert to binary
+    df['related'] = df['related'].astype('str').str.replace('2', '1')
+    
     return df
 
 
