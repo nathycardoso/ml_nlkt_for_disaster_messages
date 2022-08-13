@@ -1,7 +1,7 @@
 # Disaster Response Pipeline Project
 
 ### Objective:
-- this is a udacity project to train skills about?
+- this is a udacity project to identify disaster patterns in text messges. this can help people to better undestand when and where people need help, food, water and others things. Also we can train skills about:
 1. How to build a ETL Pipeline
 2. How to build a machine learn pipeline with nlkt
     - normalize data
@@ -16,12 +16,23 @@
 ### Files:
 
 You will find 3 folders in this project.
-1. app 
-    - files to run the webapp aplication with flask 
-2. data
-    - csv files and process_data.py with ETL pipeline
-3. models 
-    - train_classifier.py to build your ml model
+
+app
+| - template
+| |- master.html # main page of web app
+| |- go.html # classification result page of web app
+|- run.py # Flask file that runs app
+data
+|- disaster_categories.csv # data to process
+|- disaster_messages.csv # data to process
+|- process_data.py
+|- InsertDatabaseName.db # database to save clean data to
+models
+|- train_classifier.py
+|- classifier.pkl # saved model
+README.md
+
+
     
 ### installations:
 1. To run this project you need to install/import the libs below:
