@@ -1,7 +1,7 @@
 # Disaster Response Pipeline Project
 
 ### Objective:
-- this is a udacity project to identify disaster patterns in text messges. this can help people to better undestand when and where people need help, food, water and others things. Also we can train skills about:
+- this is a udacity project to identify disaster patterns in text messages. this can help people to better undestand when and where people need help, food, water and others things. Also we can train skills about:
 1. How to build a ETL Pipeline
 2. How to build a machine learn pipeline with nlkt
     - normalize data
